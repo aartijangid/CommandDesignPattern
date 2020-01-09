@@ -4,16 +4,26 @@ import java.util.Scanner;
 
 public class MarsLander {
 
-    public static void main(String arg[]) {
+    public static void main(String[] arg) {
         String userInput;
-        Scientist scientist = new Scientist();
-        try (
-                Scanner scanner = new Scanner(System.in)) {
-            while (true) {
-                System.out.print("Enter instruction: ");
+        Scanner scanner = new Scanner(System.in);
+        try {
+            do {
+                System.out.print("Enter instruction [L-Left, R-Right, F-Forward, Q-Quit]: ");
                 userInput = scanner.nextLine();
-                scientist.processInstructions(userInput);
-            }
+                processInput(userInput);
+            } while (!userInput.equalsIgnoreCase("Q"));
+        } catch (Exception e) {
+            scanner.close();
+            e.printStackTrace();
         }
+    }
+
+    static void processInput(String userInput) {
+        Scientist scientist = new Scientist();
+        if (userInput.matches("[LRF]+"))
+            scientist.processInstructions(userInput);
+        else if (!userInput.equalsIgnoreCase("Q"))
+            System.out.println("Skipping invalid instruction: " + userInput);
     }
 }

@@ -1,18 +1,14 @@
 package rt.exercise1.command;
 
-public class InstructionInput {
+class InstructionInput {
 
-    InstructionType instructionType;
+    private InstructionType instructionType;
 
-    public InstructionInput(String input){
+    InstructionInput(String input) {
         this.instructionType = InstructionType.get(input);
     }
 
-    public InstructionType  getInstructionType() {
+    InstructionType getInstructionType() {
         return instructionType;
-    }
-
-    public void setInstructionType(InstructionType instructionType) {
-        this.instructionType = instructionType;
     }
 }
